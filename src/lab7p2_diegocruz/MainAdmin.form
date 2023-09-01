@@ -112,8 +112,8 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="tf_marcaveh" alignment="0" min="-2" pref="237" max="-2" attributes="0"/>
                                               <Component id="jLabel2" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                                              <Component id="jb_colorveh" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="jLabel3" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                                              <Component id="tf_color" min="-2" pref="237" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -152,7 +152,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" pref="28" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jb_colorveh" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="tf_color" min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel6" min="-2" pref="28" max="-2" attributes="0"/>
@@ -181,16 +181,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tf_marcaveh">
-                </Component>
-                <Component class="javax.swing.JButton" name="jb_colorveh">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_colorvehMouseClicked"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
@@ -227,6 +217,8 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tf_precioveh">
+                </Component>
+                <Component class="javax.swing.JTextField" name="tf_color">
                 </Component>
               </SubComponents>
             </Container>

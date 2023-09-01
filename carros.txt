@@ -1,12 +1,7 @@
 [
-	Ford,
-	Focus,
-	2022,
+	qwpodmo[qwdm,
+	spdnpoqwn,
+	2023,
+	amarillo,
 	50000.0,
-];
-[
-	Nissan,
-	GTR,
-	2019,
-	40000.0,
 ];

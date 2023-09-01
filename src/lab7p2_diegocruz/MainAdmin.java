@@ -5,13 +5,17 @@
 package lab7p2_diegocruz;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
@@ -25,6 +29,9 @@ public class MainAdmin extends javax.swing.JFrame {
     ArrayList <Vendedor> vendedores = new ArrayList();
     ArrayList <Cliente> clientes = new ArrayList();
     ArrayList <Venta> ventasrealizadas = new ArrayList();
+    ArrayList<Cliente> tempclientes = new ArrayList();
+    ArrayList<Vendedor> tempvendedores = new ArrayList();
+    ArrayList<Vehiculo> tempcarros = new ArrayList();
 
     /**
      * Creates new form MainAdmin
@@ -48,7 +55,6 @@ public class MainAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jb_addcarro = new javax.swing.JButton();
         tf_marcaveh = new javax.swing.JTextField();
-        jb_colorveh = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tf_modveh = new javax.swing.JTextField();
@@ -57,6 +63,7 @@ public class MainAdmin extends javax.swing.JFrame {
         js_anioveh = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         tf_precioveh = new javax.swing.JTextField();
+        tf_color = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         tf_nomvend = new javax.swing.JTextField();
@@ -114,13 +121,6 @@ public class MainAdmin extends javax.swing.JFrame {
             }
         });
 
-        jb_colorveh.setBackground(new java.awt.Color(255, 255, 255));
-        jb_colorveh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_colorvehMouseClicked(evt);
-            }
-        });
-
         jLabel2.setText("Marca");
 
         jLabel3.setText("Seleccione Color");
@@ -148,8 +148,8 @@ public class MainAdmin extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tf_marcaveh, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jb_colorveh, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_color, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(216, 216, 216)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tf_precioveh, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,7 +177,7 @@ public class MainAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jb_colorveh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_color, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -427,22 +427,18 @@ public class MainAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jb_colorvehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_colorvehMouseClicked
-        jb_colorveh.setBackground(JColorChooser.showDialog(this, "Seleccione el color del vehiculo", Color.yellow));
-    }//GEN-LAST:event_jb_colorvehMouseClicked
-
     private void jb_addcarroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addcarroMouseClicked
         File archivocar = null;
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
             String ma, mo;
-            Color color;
+            String color;
             int anio;
             double prec;
             ma = tf_marcaveh.getText();
             mo = tf_modveh.getText();
-            color = jb_colorveh.getBackground();
+            color = tf_color.getText();
             anio = Integer.parseInt(js_anioveh.getValue().toString());
             prec = Double.parseDouble(tf_precioveh.getText());
             Vehiculo x = new Vehiculo();
@@ -451,12 +447,12 @@ public class MainAdmin extends javax.swing.JFrame {
             archivocar = new File ("./carros.txt");
             fw = new FileWriter(archivocar, true);
             bw = new BufferedWriter(fw);
-            bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+prec+",\n];\n");
+            bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+color+",\n\t"+prec+",\n];\n");
             bw.flush();
             tf_marcaveh.setText("");
             tf_modveh.setText("");
             js_anioveh.setValue(2023);
-            jb_colorveh.setBackground(Color.WHITE);
+            tf_color.setText("");
             tf_precioveh.setText("");
             
             
@@ -560,6 +556,9 @@ public class MainAdmin extends javax.swing.JFrame {
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         if (jTabbedPane1.getSelectedIndex() == 3){
+            RellenarCarros();
+            RellenarCompradores();
+            RellenarVendedores();
             
             
             
@@ -601,18 +600,188 @@ public class MainAdmin extends javax.swing.JFrame {
         });
     }
     
-    public void RellenarVenta(){
-        File fcarros = new File ("./carros.txt");
-        File fvend = new File ("./vendedores.txt");
-        File fclien = new File ("./clientescompradores.txt");
+    public void RellenarCarros(){
+        File fcarros = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        Scanner sc = null;
+        int count = 0;
+        
+        //Carro bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+prec+",\n];\n");
+        //Vendedor bw.write("[\n\t"+nom+",\n\t"+carvend+",\n\t"+dinero+",\n];\n");
+        //Cliente bw.write("[\n\t"+nom+",\n\t"+prof+",\n\t"+edad+",\n\t"+carroscomp+",\n\t"+sueldo+",\n];\n");
+        
         
         try {
+            fcarros = new File ("./carros.txt");
+            fr = new FileReader (fcarros);
+            br = new BufferedReader(fr);
+            
+            if (fcarros.exists()){
+                String mar, mod, color, anio, precio, temporal;
+                
+                        
+                DefaultComboBoxModel modelobox = new DefaultComboBoxModel();
+                String linea;
+                while ( (linea = br.readLine()) != null ) { 
+                    mar = br.readLine();
+                    mar = mar.trim();
+                    mar = mar.substring(0,mar.length()-1);
+                    mod = br.readLine();
+                    mod = mod.trim();
+                    mod = mod.substring(0,mod.length()-1);
+                    anio = br.readLine();
+                    anio = anio.trim();
+                    anio = anio.substring(0,anio.length()-1);
+                    color = br.readLine();
+                    color = color.trim();
+                    color = color.substring(0,color.length()-1);
+                    precio = br.readLine();
+                    precio = precio.trim();
+                    precio = precio.substring(0, precio.length()-1);
+                    temporal = br.readLine();
+                    Vehiculo x = new Vehiculo (mar, mod, temporal, color, Integer.parseInt(anio), Double.parseDouble(precio));
+                    tempcarros.add(x);
+                    modelobox.addElement(x);
+                }
+                cb_carros.setModel(modelobox);
+            }
+            br.close();
+            fr.close();
+
+            
+            
+            
+            
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error, puede que alguno de los archivos no exista.");
+            e.printStackTrace();
         }
         
         
+        
+    }
+    
+    public void RellenarVendedores(){
+        
+        File fvend = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        Scanner sc = null;
+        int count = 0;
+        
+        //Carro bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+prec+",\n];\n");
+        //Vendedor bw.write("[\n\t"+nom+",\n\t"+carvend+",\n\t"+dinero+",\n];\n");
+        //Cliente bw.write("[\n\t"+nom+",\n\t"+prof+",\n\t"+edad+",\n\t"+carroscomp+",\n\t"+sueldo+",\n];\n");
+        
+        
+        try {
+            fvend = new File ("./vendedores.txt");
+            fr = new FileReader (fvend);
+            br = new BufferedReader(fr);
+            
+            if (fvend.exists()){
+                String nom, carvend, dingen, temporal;
+                
+                        
+                DefaultComboBoxModel modelobox = new DefaultComboBoxModel();
+                String linea;
+                while ( (linea = br.readLine()) != null ) { 
+                    nom = br.readLine();
+                    nom = nom.trim();
+                    nom = nom.substring(0,nom.length()-1);
+                    carvend = br.readLine();
+                    carvend = carvend.trim();
+                    carvend = carvend.substring(0,carvend.length()-1);
+                    dingen = br.readLine();
+                    dingen = dingen.trim();
+                    dingen = dingen.substring(0,dingen.length()-1);
+                    temporal = br.readLine();
+                    Vendedor x = new Vendedor (nom, Integer.parseInt(carvend),Double.parseDouble(dingen));
+                    tempvendedores.add(x);
+                    modelobox.addElement(x);
+                }
+                cb_vendedores.setModel(modelobox);
+            }
+            
+            br.close();
+            fr.close();
+            
+
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error, puede que alguno de los archivos no exista.");
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public void RellenarCompradores(){
+        
+        File fclien = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        Scanner sc = null;
+        int count = 0;
+        
+        //Carro bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+prec+",\n];\n");
+        //Vendedor bw.write("[\n\t"+nom+",\n\t"+carvend+",\n\t"+dinero+",\n];\n");
+        //Cliente bw.write("[\n\t"+nom+",\n\t"+prof+",\n\t"+edad+",\n\t"+carroscomp+",\n\t"+sueldo+",\n];\n");
+        
+        
+        try {
+            fclien = new File ("./clientescompradores.txt");
+            fr = new FileReader (fclien);
+            br = new BufferedReader(fr);
+            
+            if (fclien.exists()){
+                String nom, ed, prof, cantcar, sueldo, temporal;
+                
+                        
+                DefaultComboBoxModel modelobox = new DefaultComboBoxModel();
+                String linea;
+                while ( (linea = br.readLine()) != null ) { 
+                    nom = br.readLine();
+                    nom = nom.trim();
+                    nom = nom.substring(0,nom.length()-1);
+                    prof = br.readLine();
+                    prof = prof.trim();
+                    prof = prof.substring(0,prof.length()-1);
+                    ed = br.readLine();
+                    ed = ed.trim();
+                    ed = ed.substring(0,ed.length()-1);
+                    
+                    cantcar = br.readLine();
+                    cantcar = cantcar.trim();
+                    cantcar = cantcar.substring(0,cantcar.length()-1);
+                    sueldo = br.readLine();
+                    sueldo = sueldo.trim();
+                    sueldo = sueldo.substring(0,sueldo.length()-1);
+                    temporal = br.readLine();
+                    Cliente x = new Cliente(nom, prof, Integer.parseInt(ed), Integer.parseInt(cantcar), Double.parseDouble(sueldo));
+                    tempclientes.add(x);
+                    modelobox.addElement(x);
+                }
+                cb_clientes.setModel(modelobox);
+            }
+            br.close();
+            fr.close();
+            
+
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error, puede que alguno de los archivos no exista.");
+            e.printStackTrace();
+        }
         
     }
 
@@ -648,11 +817,11 @@ public class MainAdmin extends javax.swing.JFrame {
     private javax.swing.JButton jb_addcarro;
     private javax.swing.JButton jb_addcliente;
     private javax.swing.JButton jb_addvend;
-    private javax.swing.JButton jb_colorveh;
     private javax.swing.JSpinner js_anioveh;
     private javax.swing.JSpinner js_carroscompcli;
     private javax.swing.JSpinner js_carrosvend;
     private javax.swing.JSpinner js_edadcliente;
+    private javax.swing.JTextField tf_color;
     private javax.swing.JTextField tf_dineroven;
     private javax.swing.JTextField tf_marcaveh;
     private javax.swing.JTextField tf_modveh;
