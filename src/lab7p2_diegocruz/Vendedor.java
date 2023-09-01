@@ -10,9 +10,9 @@ package lab7p2_diegocruz;
  */
 public class Vendedor {
     
-    String nombre;
-    int cancarros;
-    double candinero;
+    private String nombre;
+    private int cancarros;
+    private double candinero;
 
     public Vendedor(String nombre, int cancarros, double candinero) {
         this.nombre = nombre;

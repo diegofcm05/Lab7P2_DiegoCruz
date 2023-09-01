@@ -12,10 +12,10 @@ import java.awt.Color;
  */
 public class Vehiculo {
     
-    String marca, modelo, ID;
-    Color color;
-    int anio;
-    double precio;
+    private String marca, modelo, ID;
+    private Color color;
+    private int anio;
+    private double precio;
 
     public Vehiculo(String marca, String modelo, String ID, Color color, int anio, double precio) {
         this.marca = marca;
