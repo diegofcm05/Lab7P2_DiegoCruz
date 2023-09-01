@@ -64,7 +64,7 @@ public class MainAdmin extends javax.swing.JFrame {
         js_carrosvend = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
         tf_dineroven = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jb_addvend = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         tf_nomcliente = new javax.swing.JTextField();
@@ -73,11 +73,17 @@ public class MainAdmin extends javax.swing.JFrame {
         tf_profcliente = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        js_carrosvend2 = new javax.swing.JSpinner();
+        js_carroscompcli = new javax.swing.JSpinner();
         jLabel15 = new javax.swing.JLabel();
-        tf_nomvend3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        tf_sueldocli = new javax.swing.JTextField();
+        jb_addcliente = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
+        cb_carros = new javax.swing.JComboBox<>();
+        cb_clientes = new javax.swing.JComboBox<>();
+        cb_vendedores = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
 
@@ -95,6 +101,11 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 153, 255));
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jb_addcarro.setText("Agregar Vehiculo");
         jb_addcarro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -117,6 +128,8 @@ public class MainAdmin extends javax.swing.JFrame {
         jLabel4.setText("Modelo");
 
         jLabel5.setText("Año");
+
+        js_anioveh.setModel(new javax.swing.SpinnerNumberModel(2023, 1945, null, 1));
 
         jLabel6.setText("Precio");
 
@@ -184,12 +197,14 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jLabel9.setText("Carros Vendidos");
 
+        js_carrosvend.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel10.setText("Dinero Generado");
 
-        jButton1.setText("Agregar Vendedor");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_addvend.setText("Agregar Vendedor");
+        jb_addvend.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jb_addvendMouseClicked(evt);
             }
         });
 
@@ -214,7 +229,7 @@ public class MainAdmin extends javax.swing.JFrame {
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(372, 372, 372)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jb_addvend, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(250, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -233,7 +248,7 @@ public class MainAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(js_carrosvend, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jb_addvend, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
         );
 
@@ -243,21 +258,25 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jLabel12.setText("Edad");
 
+        js_edadcliente.setModel(new javax.swing.SpinnerNumberModel(18, 18, null, 1));
+
         jLabel13.setText("Profesion");
 
         jLabel14.setText("Cantidad de Carros Comprados");
 
+        js_carroscompcli.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel15.setText("Sueldo Disponible");
 
-        jButton2.setText("Agregar Cliente");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_addcliente.setText("Agregar Cliente");
+        jb_addcliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jb_addclienteMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jb_addcliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jb_addclienteActionPerformed(evt);
             }
         });
 
@@ -276,14 +295,14 @@ public class MainAdmin extends javax.swing.JFrame {
                     .addComponent(js_edadcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(js_carrosvend2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(js_carroscompcli, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_nomvend3, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_sueldocli, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(199, 199, 199))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(369, 369, 369)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jb_addcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -298,7 +317,7 @@ public class MainAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(js_carrosvend2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(js_carroscompcli, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -308,27 +327,58 @@ public class MainAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_nomvend3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tf_sueldocli, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tf_profcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jb_addcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
         jTabbedPane1.addTab("Agregar Cliente", jPanel4);
 
+        jLabel7.setText("Seleccione Vendedor");
+
+        jLabel16.setText("Seleccione Cliente");
+
+        jLabel17.setText("Seleccione Carro a Comprar");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cb_carros, 0, 302, Short.MAX_VALUE)
+                        .addComponent(cb_clientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(140, 140, 140))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_vendedores, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_carros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Hacer Venta", jPanel5);
@@ -426,7 +476,7 @@ public class MainAdmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jb_addcarroMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jb_addvendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addvendMouseClicked
         File archivovend = null;
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -460,15 +510,61 @@ public class MainAdmin extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jb_addvendMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void jb_addclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addclienteMouseClicked
+        File archivocli = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        
+        try {
+            String nom, prof;
+            int edad, carroscomp;
+            double sueldo;
+            
+            nom = tf_nomcliente.getText();
+            prof = tf_profcliente.getText();
+            edad = Integer.parseInt(js_edadcliente.getValue().toString());
+            carroscomp = Integer.parseInt(js_carroscompcli.getValue().toString());
+            sueldo = Double.parseDouble(tf_sueldocli.getText());
+            Cliente w = new Cliente (nom,prof,edad,carroscomp,sueldo);
+            clientes.add(w);
+            JOptionPane.showMessageDialog(null, "Cliente Agregado exitosamente!");
+            archivocli = new File ("./clientescompradores.txt");
+            fw = new FileWriter(archivocli, true);
+            bw = new BufferedWriter(fw);
+            bw.write("[\n\t"+nom+",\n\t"+prof+",\n\t"+edad+",\n\t"+carroscomp+",\n\t"+sueldo+",\n];\n");
+            bw.flush();
+            tf_nomcliente.setText("");
+            tf_profcliente.setText("");
+            js_edadcliente.setValue(18);
+            js_carroscompcli.setValue(0);
+            tf_dineroven.setText("");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+            e.printStackTrace();
+        }
+        
+        try {
+            fw.close();
+            bw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jb_addclienteMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jb_addclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_addclienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jb_addclienteActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        if (jTabbedPane1.getSelectedIndex() == 3){
+            
+            
+            
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
@@ -504,10 +600,26 @@ public class MainAdmin extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void RellenarVenta(){
+        File fcarros = new File ("./carros.txt");
+        File fvend = new File ("./vendedores.txt");
+        File fclien = new File ("./clientescompradores.txt");
+        
+        try {
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error, puede que alguno de los archivos no exista.");
+        }
+        
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> cb_carros;
+    private javax.swing.JComboBox<String> cb_clientes;
+    private javax.swing.JComboBox<String> cb_vendedores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -515,11 +627,14 @@ public class MainAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -531,18 +646,20 @@ public class MainAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jb_addcarro;
+    private javax.swing.JButton jb_addcliente;
+    private javax.swing.JButton jb_addvend;
     private javax.swing.JButton jb_colorveh;
     private javax.swing.JSpinner js_anioveh;
+    private javax.swing.JSpinner js_carroscompcli;
     private javax.swing.JSpinner js_carrosvend;
-    private javax.swing.JSpinner js_carrosvend2;
     private javax.swing.JSpinner js_edadcliente;
     private javax.swing.JTextField tf_dineroven;
     private javax.swing.JTextField tf_marcaveh;
     private javax.swing.JTextField tf_modveh;
     private javax.swing.JTextField tf_nomcliente;
     private javax.swing.JTextField tf_nomvend;
-    private javax.swing.JTextField tf_nomvend3;
     private javax.swing.JTextField tf_precioveh;
     private javax.swing.JTextField tf_profcliente;
+    private javax.swing.JTextField tf_sueldocli;
     // End of variables declaration//GEN-END:variables
 }

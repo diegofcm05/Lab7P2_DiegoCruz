@@ -1,0 +1,7 @@
+[
+	Diego Cruz,
+	Negro Esclavo de Unitec,
+	18,
+	1,
+	40000.0,
+];
