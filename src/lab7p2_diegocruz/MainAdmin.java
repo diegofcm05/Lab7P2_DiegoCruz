@@ -750,6 +750,7 @@ public class MainAdmin extends javax.swing.JFrame {
         BufferedReader br = null;
         Scanner sc = null;
         int count = 0;
+        System.out.println("Acabo de llegar a mi casa");
         
         //Carro bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+prec+",\n];\n");
         //Vendedor bw.write("[\n\t"+nom+",\n\t"+carvend+",\n\t"+dinero+",\n];\n");
