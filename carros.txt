@@ -1,7 +1,16 @@
 [
-	qwpodmo[qwdm,
-	spdnpoqwn,
-	2023,
-	amarillo,
-	50000.0,
+	Ford,
+	Focus,
+	2018,
+	amarilllo,
+	40000.0,
+	5122ZMOB,
+];
+[
+	Toyota,
+	Corolla,
+	2017,
+	Azul,
+	60000.0,
+	8491CHCA,
 ];
