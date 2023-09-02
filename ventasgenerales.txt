@@ -1,35 +1,25 @@
 [
-	Juan,
-	Diego,
-	5122ZM,
+	Diegoo,
+	Juan Pachucha,
+	6610EIEK,
 ];
 [
-	Juan,
-	Diego,
-	5122ZM,
+	Diegoo,
+	Juan Pachucha,
+	6610EIEK,
 ];
 [
-	Juan,
-	Diego,
-	5122ZM,
+	Diegoo,
+	Juan Pachucha,
+	6610EIEK,
 ];
 [
-	Juan,
-	Diego,
-	8491CH,
+	Diegoo,
+	Juan Pachucha,
+	6610EIEK,
 ];
 [
-	Juan,
-	Diego,
-	8491CHCA,
-];
-[
-	Juan,
-	Diego,
-	5122ZMOB,
-];
-[
-	Juan,
-	Diego,
-	5122ZMOB,
+	Diegoo,
+	Juan Pachucha,
+	6610EIEK,
 ];

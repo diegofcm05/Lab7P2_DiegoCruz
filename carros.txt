@@ -2,15 +2,7 @@
 	Ford,
 	Focus,
 	2018,
-	amarilllo,
-	40000.0,
-	5122ZMOB,
-];
-[
-	Toyota,
-	Corolla,
-	2017,
-	Azul,
-	60000.0,
-	8491CHCA,
+	Cyan,
+	300000.0,
+	6610EIEK,
 ];

@@ -754,6 +754,7 @@ public class MainAdmin extends javax.swing.JFrame {
                 DefaultMutableTreeNode hijo = (DefaultMutableTreeNode)raizd.getChildAt(cont);
                 hijo.add(new DefaultMutableTreeNode(tempventas.get(contadicional)));
                 contadicional++;
+                cont++;
                 
             }
             modeloARBOLdia.reload();
