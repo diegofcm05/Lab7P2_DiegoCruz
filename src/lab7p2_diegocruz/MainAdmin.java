@@ -18,7 +18,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -26,6 +28,7 @@ import javax.swing.JOptionPane;
  */
 public class MainAdmin extends javax.swing.JFrame {
     
+    int contventaid = 0;
     ArrayList <Vehiculo> carros = new ArrayList();
     ArrayList <Vendedor> vendedores = new ArrayList();
     ArrayList <Cliente> clientes = new ArrayList();
@@ -95,11 +98,6 @@ public class MainAdmin extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jb_hacerventa = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jb_abrirarchivo = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
@@ -107,6 +105,11 @@ public class MainAdmin extends javax.swing.JFrame {
         jTree2 = new javax.swing.JTree();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_archivos = new javax.swing.JTextArea();
+        jb_abrirarchivo = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -410,44 +413,6 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Hacer Venta", jPanel5);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jb_abrirarchivo.setText("Abrir Archivo");
-
-        jButton2.setText("Guardar Archivo");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(jb_abrirarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jb_abrirarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
-        );
-
-        jTabbedPane1.addTab("Abrir Archivo", jPanel6);
-
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Dia");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Venta");
         treeNode1.add(treeNode2);
@@ -480,20 +445,71 @@ public class MainAdmin extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(34, Short.MAX_VALUE)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56))
         );
 
         jTabbedPane1.addTab("Arboles", jPanel7);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 950, 530));
+        ta_archivos.setColumns(20);
+        ta_archivos.setRows(5);
+        jScrollPane1.setViewportView(ta_archivos);
+
+        jb_abrirarchivo.setText("Abrir Archivo");
+        jb_abrirarchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_abrirarchivoMouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Guardar Archivo");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(jb_abrirarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_abrirarchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Abrir Archivo", jPanel6);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 950, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -648,6 +664,10 @@ public class MainAdmin extends javax.swing.JFrame {
             
             
         }
+        
+        if (jTabbedPane1.getSelectedIndex() == 5){
+            
+        }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void jb_hacerventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_hacerventaMouseClicked
@@ -669,10 +689,8 @@ public class MainAdmin extends javax.swing.JFrame {
             carroid = ((Vehiculo) cb_carros.getSelectedItem()).getID();
             tempclientes.get(cb_clientes.getSelectedIndex()).setCantcarros(tempclientes.get(cb_clientes.getSelectedIndex()).getCantcarros()+1);
             tempvendedores.get(cb_vendedores.getSelectedIndex()).setCancarros(tempvendedores.get(cb_vendedores.getSelectedIndex()).getCancarros()+1);
-            JOptionPane.showMessageDialog(this, "La venta se ha realizado exitosamente!");
-//          RellenarCarros();
-//          RellenarCompradores();
-//          RellenarVendedores();
+            tempvendedores.get(cb_vendedores.getSelectedIndex()).setCandinero(tempvendedores.get(cb_vendedores.getSelectedIndex()).getCandinero()+((Vehiculo)cb_carros.getSelectedItem()).getPrecio());
+            
             archivo = new File ("./ventasgenerales.txt");
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
@@ -702,10 +720,107 @@ public class MainAdmin extends javax.swing.JFrame {
                 bw.write("[\n\t"+tc.getNombre()+",\n\t"+tc.getProf()+",\n\t"+tc.getEdad()+",\n\t"+tc.getCantcarros()+",\n\t"+tc.getSueldo()+",\n];\n");
                 
             }
+            bw.flush();
+            
         } catch (Exception e) {
+            e.printStackTrace();
         }
+        
+        try {
+            archivo = new File ("./vendedores.txt");
+            fw = new FileWriter(archivo, false);
+            bw = new BufferedWriter(fw);
+            for (Vendedor tv : tempvendedores) {
+                
+                bw.write("[\n\t"+tv.getNombre()+",\n\t"+tv.getCancarros()+",\n\t"+tv.getCandinero()+",\n];\n");
+            }
+            bw.flush();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        RellenarCarros();
+        RellenarCompradores();
+        RellenarVendedores();
+        JOptionPane.showMessageDialog(this, "La venta se ha realizado exitosamente!");
        
     }//GEN-LAST:event_jb_hacerventaMouseClicked
+
+    private void jb_abrirarchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirarchivoMouseClicked
+        File fichero = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        ta_archivos.setText("");
+        try {
+            
+            JFileChooser jfc = new JFileChooser("./");
+            FileNameExtensionFilter filtro = 
+                    new FileNameExtensionFilter(
+                            "Archivos de Texto", "txt");
+            jfc.setFileFilter(filtro);        
+            int seleccion = jfc.showOpenDialog(this);
+            if (seleccion == JFileChooser.APPROVE_OPTION)
+            {
+               fichero = jfc.getSelectedFile();
+               fr = new FileReader(fichero);
+               br=new BufferedReader(fr);
+               String linea;
+               ta_archivos.setText("");
+               while(  (linea=br.readLine()) !=null  ){                    
+                    ta_archivos.append(linea);
+                    ta_archivos.append("\n");
+                }
+            } //fin if
+            
+        } catch (Exception e) {
+        }
+        
+        try {
+            br.close();
+            fr.close();
+        } catch (IOException ex) {
+        }
+       
+    }//GEN-LAST:event_jb_abrirarchivoMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        JFileChooser jfc = new JFileChooser();
+        FileNameExtensionFilter filtro = 
+                    new FileNameExtensionFilter(
+                            "Archivos de Texto", "txt");
+        jfc.addChoosableFileFilter(filtro); 
+        int seleccion = jfc.showSaveDialog(this);        
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+             try {
+                 
+                  File fichero=null;
+                if (jfc.getFileFilter().getDescription().equals(
+                        "Archivos de Texto")) {
+                    fichero = 
+                        new File(jfc.getSelectedFile().getPath()+".txt");
+                }else{
+                    fichero = jfc.getSelectedFile();
+                }                             
+                fw = new FileWriter(fichero);
+                bw = new BufferedWriter(fw);
+                bw.write(ta_archivos.getText());
+                ta_archivos.setText("");
+                bw.flush();         
+                JOptionPane.showMessageDialog(this, "El Archivo se guardo exitosamente!");  
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                    bw.close();
+                    fw.close();
+                } catch (IOException ex) {
+           }                     
+        }//fin IF
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -750,8 +865,7 @@ public class MainAdmin extends javax.swing.JFrame {
         BufferedReader br = null;
         Scanner sc = null;
         int count = 0;
-        System.out.println("Acabo de llegar a mi casa");
-        
+                
         //Carro bw.write("[\n\t"+ma+",\n\t"+mo+",\n\t"+anio+",\n\t"+prec+",\n];\n");
         //Vendedor bw.write("[\n\t"+nom+",\n\t"+carvend+",\n\t"+dinero+",\n];\n");
         //Cliente bw.write("[\n\t"+nom+",\n\t"+prof+",\n\t"+edad+",\n\t"+carroscomp+",\n\t"+sueldo+",\n];\n");
@@ -983,7 +1097,6 @@ public class MainAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jTree2;
     private javax.swing.JButton jb_abrirarchivo;
@@ -995,6 +1108,7 @@ public class MainAdmin extends javax.swing.JFrame {
     private javax.swing.JSpinner js_carroscompcli;
     private javax.swing.JSpinner js_carrosvend;
     private javax.swing.JSpinner js_edadcliente;
+    private javax.swing.JTextArea ta_archivos;
     private javax.swing.JTextField tf_color;
     private javax.swing.JTextField tf_dineroven;
     private javax.swing.JTextField tf_marcaveh;

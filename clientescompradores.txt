@@ -1,7 +1,7 @@
 [
-	Diego Cruz,
-	Negro Esclavo de Unitec,
+	Juan,
+	abogado,
 	18,
-	1,
-	40000.0,
+	2,
+	50000.0,
 ];
