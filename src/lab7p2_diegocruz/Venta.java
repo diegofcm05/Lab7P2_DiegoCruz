@@ -59,7 +59,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "vendedor=" + vendedor + ", comprador=" + comprador + ", coste=" + coste + ", carvend=" + carvend + '}';
+        return comprador.getNombre()+"-"+vendedor.getNombre()+"-"+carvend.getID();
     }
     
     

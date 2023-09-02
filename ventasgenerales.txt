@@ -18,3 +18,18 @@
 	Diego,
 	8491CH,
 ];
+[
+	Juan,
+	Diego,
+	8491CHCA,
+];
+[
+	Juan,
+	Diego,
+	5122ZMOB,
+];
+[
+	Juan,
+	Diego,
+	5122ZMOB,
+];

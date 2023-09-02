@@ -30,12 +30,12 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class MainAdmin extends javax.swing.JFrame {
     
-    int contventaid = 0;
+    int contventaid = 1;
     ArrayList <Vehiculo> carros = new ArrayList();
     ArrayList <Vendedor> vendedores = new ArrayList();
     ArrayList <Cliente> clientes = new ArrayList();
     ArrayList <Venta> ventasrealizadas = new ArrayList();
-    ArrayList <Venta> ventasfull = new ArrayList();
+    ArrayList <Venta> tempventas = new ArrayList();
     ArrayList<Cliente> tempclientes = new ArrayList();
     ArrayList<Vendedor> tempvendedores = new ArrayList();
     ArrayList<Vehiculo> tempcarros = new ArrayList();
@@ -677,6 +677,8 @@ public class MainAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_addclienteActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        int cont = 0;
+        int contadicional = 0;
         if (jTabbedPane1.getSelectedIndex() == 3){
             RellenarCarros();
             RellenarCompradores();
@@ -690,12 +692,14 @@ public class MainAdmin extends javax.swing.JFrame {
             RellenarCarros();
             RellenarCompradores();
             RellenarVendedores();
+            RellenarVentas();
             
             String carro = "Vehiculos";
-            String clientes = "Clientes";
-            String vendedores = "Vendedores";
+            String clientes1 = "Clientes";
+            String vendedores1 = "Vendedores";
+            String ventas1 = "Ventas";
             DefaultTreeModel modeloARBOL
-                    = (DefaultTreeModel) jt_general.getModel();
+                    = new DefaultTreeModel(new DefaultMutableTreeNode("Admin"));
             DefaultMutableTreeNode raiz
                     = (DefaultMutableTreeNode) modeloARBOL.getRoot();
             
@@ -707,7 +711,7 @@ public class MainAdmin extends javax.swing.JFrame {
                 
             }
             
-            DefaultMutableTreeNode o = new DefaultMutableTreeNode(clientes);
+            DefaultMutableTreeNode o = new DefaultMutableTreeNode(clientes1);
             
             for (Cliente tempcliente : tempclientes) {
                 DefaultMutableTreeNode p = new DefaultMutableTreeNode(tempcliente);
@@ -715,7 +719,7 @@ public class MainAdmin extends javax.swing.JFrame {
                 
             }
             
-            DefaultMutableTreeNode v = new DefaultMutableTreeNode(vendedores);
+            DefaultMutableTreeNode v = new DefaultMutableTreeNode(vendedores1);
             
             for (Vendedor tempvendedor : tempvendedores) {
                 DefaultMutableTreeNode p = new DefaultMutableTreeNode(tempvendedor);
@@ -723,18 +727,38 @@ public class MainAdmin extends javax.swing.JFrame {
                 
             }
             
+            DefaultMutableTreeNode nosecomoponerle = new DefaultMutableTreeNode(ventas1);
+            
+            for (Venta vr : ventasrealizadas) {
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(vr);
+                nosecomoponerle.add(p);
+                
+            }
+            
             raiz.add(n);
             raiz.add(o);
             raiz.add(v);
+            raiz.add(nosecomoponerle);
             
             modeloARBOL.reload();
+            jt_general.setModel(modeloARBOL);
         }
         
         if (jTabbedPane1.getSelectedIndex() == 5){
-            DefaultTreeModel modeloARBOL
-                    = (DefaultTreeModel) jt_general.getModel();
-            DefaultMutableTreeNode raiz
-                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            DefaultTreeModel modeloARBOLdia
+                    = new DefaultTreeModel (new DefaultMutableTreeNode("Ventas Diarias"));
+            DefaultMutableTreeNode raizd
+                    = (DefaultMutableTreeNode) modeloARBOLdia.getRoot();
+            for (Venta tempventa : tempventas) {
+                raizd.add(new DefaultMutableTreeNode(cont));
+                DefaultMutableTreeNode hijo = (DefaultMutableTreeNode)raizd.getChildAt(cont);
+                hijo.add(new DefaultMutableTreeNode(tempventas.get(contadicional)));
+                contadicional++;
+                
+            }
+            modeloARBOLdia.reload();
+            jt_dia.setModel(modeloARBOLdia);
+ 
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
@@ -758,7 +782,8 @@ public class MainAdmin extends javax.swing.JFrame {
             tempclientes.get(cb_clientes.getSelectedIndex()).setCantcarros(tempclientes.get(cb_clientes.getSelectedIndex()).getCantcarros()+1);
             tempvendedores.get(cb_vendedores.getSelectedIndex()).setCancarros(tempvendedores.get(cb_vendedores.getSelectedIndex()).getCancarros()+1);
             tempvendedores.get(cb_vendedores.getSelectedIndex()).setCandinero(tempvendedores.get(cb_vendedores.getSelectedIndex()).getCandinero()+((Vehiculo)cb_carros.getSelectedItem()).getPrecio());
-            ventasrealizadas.add(x);
+            
+            tempventas.add(x);
             archivo = new File ("./ventasgenerales.txt");
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
@@ -904,14 +929,14 @@ public class MainAdmin extends javax.swing.JFrame {
             archivoventas = new File ("./"+nombre+".txt");
             fw = new FileWriter(archivoventas, true);
             bw = new BufferedWriter(fw);
-            for (Venta ventreal : ventasrealizadas) {
+            for (Venta ventreal : tempventas) {
                 bw.write("[\n\t"+contventaid+",\n\t"+ventreal.getComprador().getNombre()+",\n\t"+ventreal.getVendedor().getNombre()+",\n\t"+ventreal.getCarvend().getID()+",\n];\n");
                 contventaid++;
             }
             bw.flush();
             JOptionPane.showMessageDialog(this, "El archivo diario se creo exitosamente!");
-            contventaid = 0;
-            ventasrealizadas = new ArrayList();
+            contventaid = 1;
+            tempventas = new ArrayList();
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -1184,7 +1209,15 @@ public class MainAdmin extends javax.swing.JFrame {
                     
                     temporal = br.readLine();
                     Vehiculo a = new Vehiculo();
+                    a.setID(id);
+                    Cliente b = new Cliente();
+                    b.setNombre(nomcomp);
+                    Vendedor c = new Vendedor ();
+                    c.setNombre(nomvend);
                     Venta x = new Venta();
+                    x.setCarvend(a);
+                    x.setComprador(b);
+                    x.setVendedor(c);
                     ventasrealizadas.add(x);
                     
                 }
