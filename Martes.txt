@@ -1,19 +1,11 @@
 [
+	0,
 	Juan,
 	Diego,
 	5122ZM,
 ];
 [
-	Juan,
-	Diego,
-	5122ZM,
-];
-[
-	Juan,
-	Diego,
-	5122ZM,
-];
-[
+	0,
 	Juan,
 	Diego,
 	8491CH,

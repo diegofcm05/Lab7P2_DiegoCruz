@@ -21,6 +21,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -33,6 +35,7 @@ public class MainAdmin extends javax.swing.JFrame {
     ArrayList <Vendedor> vendedores = new ArrayList();
     ArrayList <Cliente> clientes = new ArrayList();
     ArrayList <Venta> ventasrealizadas = new ArrayList();
+    ArrayList <Venta> ventasfull = new ArrayList();
     ArrayList<Cliente> tempclientes = new ArrayList();
     ArrayList<Vendedor> tempvendedores = new ArrayList();
     ArrayList<Vehiculo> tempcarros = new ArrayList();
@@ -98,18 +101,19 @@ public class MainAdmin extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jb_hacerventa = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTree2 = new javax.swing.JTree();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_archivos = new javax.swing.JTextArea();
         jb_abrirarchivo = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_dia = new javax.swing.JTree();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_general = new javax.swing.JTree();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jb_generarreporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -413,54 +417,6 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Hacer Venta", jPanel5);
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Dia");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Venta");
-        treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane2.setViewportView(jTree1);
-
-        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Admin");
-        jTree2.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane3.setViewportView(jTree2);
-
-        jLabel18.setText("Informacion del Dia");
-
-        jLabel19.setText("Sistema General");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(133, 133, 133)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(162, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addContainerGap(34, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
-        );
-
-        jTabbedPane1.addTab("Arboles", jPanel7);
-
         ta_archivos.setColumns(20);
         ta_archivos.setRows(5);
         jScrollPane1.setViewportView(ta_archivos);
@@ -509,7 +465,72 @@ public class MainAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Abrir Archivo", jPanel6);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 950, 530));
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Dia");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Venta");
+        treeNode1.add(treeNode2);
+        jt_dia.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jt_dia);
+
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Admin");
+        jt_general.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane3.setViewportView(jt_general);
+
+        jLabel18.setText("Informacion del Dia");
+
+        jLabel19.setText("Sistema General");
+
+        jb_generarreporte.setText("Generar Reporte de Ventas Diarias");
+        jb_generarreporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_generarreporteMouseClicked(evt);
+            }
+        });
+        jb_generarreporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_generarreporteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jb_generarreporte, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2)))
+                .addGap(133, 133, 133)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(162, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(34, Short.MAX_VALUE)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_generarreporte, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21))
+        );
+
+        jTabbedPane1.addTab("Arboles", jPanel7);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 950, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -666,7 +687,54 @@ public class MainAdmin extends javax.swing.JFrame {
         }
         
         if (jTabbedPane1.getSelectedIndex() == 5){
+            RellenarCarros();
+            RellenarCompradores();
+            RellenarVendedores();
             
+            String carro = "Vehiculos";
+            String clientes = "Clientes";
+            String vendedores = "Vendedores";
+            DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_general.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            
+            DefaultMutableTreeNode n = new DefaultMutableTreeNode(carro);
+            
+            for (Vehiculo tempcarro : tempcarros) {
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(tempcarro);
+                n.add(p);
+                
+            }
+            
+            DefaultMutableTreeNode o = new DefaultMutableTreeNode(clientes);
+            
+            for (Cliente tempcliente : tempclientes) {
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(tempcliente);
+                o.add(p);
+                
+            }
+            
+            DefaultMutableTreeNode v = new DefaultMutableTreeNode(vendedores);
+            
+            for (Vendedor tempvendedor : tempvendedores) {
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode(tempvendedor);
+                v.add(p);
+                
+            }
+            
+            raiz.add(n);
+            raiz.add(o);
+            raiz.add(v);
+            
+            modeloARBOL.reload();
+        }
+        
+        if (jTabbedPane1.getSelectedIndex() == 5){
+            DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_general.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
@@ -690,7 +758,7 @@ public class MainAdmin extends javax.swing.JFrame {
             tempclientes.get(cb_clientes.getSelectedIndex()).setCantcarros(tempclientes.get(cb_clientes.getSelectedIndex()).getCantcarros()+1);
             tempvendedores.get(cb_vendedores.getSelectedIndex()).setCancarros(tempvendedores.get(cb_vendedores.getSelectedIndex()).getCancarros()+1);
             tempvendedores.get(cb_vendedores.getSelectedIndex()).setCandinero(tempvendedores.get(cb_vendedores.getSelectedIndex()).getCandinero()+((Vehiculo)cb_carros.getSelectedItem()).getPrecio());
-            
+            ventasrealizadas.add(x);
             archivo = new File ("./ventasgenerales.txt");
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
@@ -822,6 +890,41 @@ public class MainAdmin extends javax.swing.JFrame {
         }//fin IF
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jb_generarreporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_generarreporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_generarreporteActionPerformed
+
+    private void jb_generarreporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_generarreporteMouseClicked
+        String nombre = JOptionPane.showInputDialog(this, "Nombre del Archivo a Crear:");
+        File archivoventas = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        
+        try {
+            archivoventas = new File ("./"+nombre+".txt");
+            fw = new FileWriter(archivoventas, true);
+            bw = new BufferedWriter(fw);
+            for (Venta ventreal : ventasrealizadas) {
+                bw.write("[\n\t"+contventaid+",\n\t"+ventreal.getComprador().getNombre()+",\n\t"+ventreal.getVendedor().getNombre()+",\n\t"+ventreal.getCarvend().getID()+",\n];\n");
+                contventaid++;
+            }
+            bw.flush();
+            JOptionPane.showMessageDialog(this, "El archivo diario se creo exitosamente!");
+            contventaid = 0;
+            ventasrealizadas = new ArrayList();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            fw.close();
+            bw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jb_generarreporteMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -900,7 +1003,7 @@ public class MainAdmin extends javax.swing.JFrame {
                     precio = precio.substring(0, precio.length()-1);
                     id = br.readLine();
                     id = id.trim();
-                    id = id.substring(0, precio.length()-1);
+                    id = id.substring(0, id.length()-1);
                     temporal = br.readLine();
                     Vehiculo x = new Vehiculo (mar, mod, id, color, Integer.parseInt(anio), Double.parseDouble(precio));
                     tempcarros.add(x);
@@ -1047,6 +1150,63 @@ public class MainAdmin extends javax.swing.JFrame {
         
     }
     
+    public void RellenarVentas(){
+        ventasrealizadas = new ArrayList();
+        File fventas = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        Scanner sc = null;
+        int count = 0;
+        
+        
+        
+        try {
+            fventas = new File ("./ventasgenerales.txt");
+            fr = new FileReader (fventas);
+            br = new BufferedReader(fr);
+            
+            if (fventas.exists()){
+                String nomcomp, nomvend, id, temporal;
+                
+                        
+                
+                String linea;
+                while ( (linea = br.readLine()) != null ) { 
+                    nomcomp = br.readLine();
+                    nomcomp = nomcomp.trim();
+                    nomcomp = nomcomp.substring(0,nomcomp.length()-1);
+                    nomvend = br.readLine();
+                    nomvend = nomvend.trim();
+                    nomvend = nomvend.substring(0,nomvend.length()-1);
+                    id = br.readLine();
+                    id = id.trim();
+                    id = id.substring(0,id.length()-1);
+                    
+                    temporal = br.readLine();
+                    Vehiculo a = new Vehiculo();
+                    Venta x = new Venta();
+                    ventasrealizadas.add(x);
+                    
+                }
+                
+            }
+            br.close();
+            fr.close();
+            
+
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error, puede que alguno de los archivos no exista.");
+            e.printStackTrace();
+        }
+        
+        
+    }
+    
     public String genid(){
         String temp = "";
         for (int i = 0; i < 4; i++) {
@@ -1097,17 +1257,18 @@ public class MainAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTree jTree1;
-    private javax.swing.JTree jTree2;
     private javax.swing.JButton jb_abrirarchivo;
     private javax.swing.JButton jb_addcarro;
     private javax.swing.JButton jb_addcliente;
     private javax.swing.JButton jb_addvend;
+    private javax.swing.JButton jb_generarreporte;
     private javax.swing.JButton jb_hacerventa;
     private javax.swing.JSpinner js_anioveh;
     private javax.swing.JSpinner js_carroscompcli;
     private javax.swing.JSpinner js_carrosvend;
     private javax.swing.JSpinner js_edadcliente;
+    private javax.swing.JTree jt_dia;
+    private javax.swing.JTree jt_general;
     private javax.swing.JTextArea ta_archivos;
     private javax.swing.JTextField tf_color;
     private javax.swing.JTextField tf_dineroven;
